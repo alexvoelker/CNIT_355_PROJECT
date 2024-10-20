@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">CNIT_355_PROJECT</string>
+    <string name="centsible">Centsible</string>
+    <string name="login_subtitle">Welcome! Please Log In</string>
+    <string name="signup_subtitle">Create a new account!</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="back">BACK</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="DOB">Birthday: mm/dd/yyyy</string>
+    <string name="overview">OVERVIEW</string>
+    <string name="billCalendar">BILL CALENDAR</string>
+    <string name="debtTracker">DEBT TRACKER</string>
+    <string name="receiptScanner">RECEIPT SCANNER</string>
 </resources>
