@@ -42,10 +42,15 @@ public class SignUpActivity extends AppCompatActivity {
      * If not, display an error message
      */
     public void onClickSignUp(View view) {
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+
         EditText username = findViewById(R.id.editTextNewUsername);
         String usernameString = username.getText().toString();
         EditText password = findViewById(R.id.editTextNewPassword);
         String passwordString = password.getText().toString();
+
+        //can change later if group decides different approach
+        String hashedPassword = Security.hashPassword(passwordString);
 
         // dob -> user's data of birth
         EditText dob = findViewById(R.id.editTextNewDOB);
@@ -55,21 +60,32 @@ public class SignUpActivity extends AppCompatActivity {
         if (!checkValidAccount(usernameString, passwordString)) {
             Toast.makeText(this, accountCreationFailureMessage, Toast.LENGTH_SHORT).show();
         } else {
-            data = new UserData(usernameString, passwordString, dobString);
+            //data = new UserData(usernameString, passwordString, dobString);
+            data = new UserData(usernameString, hashedPassword, dobString);
             Intent intent = new Intent(this, LoadingActivity.class);
             intent.putExtra("userData", (Serializable) data);
             intent.putExtra("requestType", RequestType.UPDATE_SERVER_RECORDS);
             startActivity(intent);
-        }
+        } //UPDATED 11/17/24 with hashed password stuff
 
     }
 
     private boolean checkValidAccount(String username, String password) {
         // TODO make sure that the username hasn't been taken by another
         //  account, and that the password meets our requirements
-
+        //DONE with verifying username, need to discuss pw requirements still
         // TODO set the value of accountCreationFailureMessage corresponding to what the error is
-
-        return false;
-    }
+        //DONE
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        if (username.isEmpty() || password.isEmpty()) {
+            accountCreationFailureMessage = "Username and Password cannot be empty";
+            return false;
+        }
+        if (dbHelper.checkLogin(username, password)) {
+            accountCreationFailureMessage = "Username already exists";
+            return false;
+        }
+        // More validation here (e.g., password strength checks)
+        return true;
+    } //UPDATED 11/17/24
 }

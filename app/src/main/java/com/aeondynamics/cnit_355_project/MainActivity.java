@@ -41,14 +41,19 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onClickLogin(View view) {
         boolean loginSuccess = false;
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+
         // Do login things here
         EditText username = findViewById(R.id.editTextUsername);
         String usernameString = username.getText().toString();
         EditText password = findViewById(R.id.editTextPassword);
         String passwordString = password.getText().toString();
 
-        loginSuccess = checkLogin(usernameString, passwordString);
+        // UPDATED 11/17/24 Hash the password before checking against the database
+        String hashedPassword = Security.hashPassword(passwordString);
 
+        //loginSuccess = checkLogin(usernameString, passwordString);
+        loginSuccess = dbHelper.checkLogin(usernameString, hashedPassword);
 
         // If so, set loginSuccess to true
         // Otherwise, tell the user that the username/password is incorrect
@@ -66,10 +71,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
-
+/*
     private boolean checkLogin(String username, String password) {
         // Call the server or internal database to check if the input information is correct
         // TODO return true if the information was valid
         return false;
     }
+
+ */
 }

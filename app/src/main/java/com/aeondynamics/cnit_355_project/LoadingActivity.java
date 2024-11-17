@@ -47,7 +47,6 @@ public class LoadingActivity extends AppCompatActivity {
                     break;
                 case UPDATE_SERVER_RECORDS:
                     // TODO make a call to update the server/database
-
                     // TODO make this reflect the success/failure of the server/database request
                     returnStatus = false;
                     break;
