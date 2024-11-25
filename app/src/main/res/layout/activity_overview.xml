@@ -7,21 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".OverviewActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.aeondynamics.cnit_355_project.fragment.BlankFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:id="@+id/navBar"
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#673AB7"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:orientation="horizontal"
-        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
+        <Button
             android:id="@+id/navOverview"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
             android:onClick="onClickNavOverview"
             android:padding="10dp"
             android:text="@string/overview"
@@ -29,10 +45,11 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
-        <TextView
+        <Button
             android:id="@+id/navBillCalendar"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickNavBillCalendar"
             android:padding="10dp"
@@ -41,10 +58,11 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
-        <TextView
+        <Button
             android:id="@+id/navDebtTracker"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickNavDebtTracker"
             android:padding="10dp"
@@ -53,14 +71,16 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
-        <TextView
+        <Button
             android:id="@+id/navReceiptScanner"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickNavReceiptScanner"
             android:padding="10dp"
             android:text="@string/receiptScanner"
+            android:textAlignment="textStart"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 

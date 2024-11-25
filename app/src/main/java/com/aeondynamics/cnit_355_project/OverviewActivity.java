@@ -28,31 +28,18 @@ public class OverviewActivity extends AppCompatActivity {
         data = (IUserData) intent.getSerializableExtra("userData");
     }
 
+    /*
+    * Change these to switch fragments
+    * */
     public void onClickNavOverview(View view) {
-        // Go to the overview activity
-        Intent intent = new Intent(this, OverviewActivity.class);
-        intent.putExtra("userData", data);
-        startActivity(intent);
     }
 
     public void onClickNavBillCalendar(View view) {
-        // Go to the overview activity
-        Intent intent = new Intent(this, BillCalendarActivity.class);
-        intent.putExtra("userData", data);
-        startActivity(intent);
     }
 
     public void onClickNavDebtTracker(View view) {
-        // Go to the overview activity
-        Intent intent = new Intent(this, DebtTrackerActivity.class);
-        intent.putExtra("userData", data);
-        startActivity(intent);
     }
 
     public void onClickNavReceiptScanner(View view) {
-        // Go to the overview activity
-        Intent intent = new Intent(this, ReceiptScannerActivity.class);
-        intent.putExtra("userData", data);
-        startActivity(intent);
     }
 }
