@@ -1,6 +1,6 @@
 package com.aeondynamics.cnit_355_project;
 
-// TODO actually implement Serializable for this clasimport android.content.Context;
+// TODO actually implement Serializable for this class
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
