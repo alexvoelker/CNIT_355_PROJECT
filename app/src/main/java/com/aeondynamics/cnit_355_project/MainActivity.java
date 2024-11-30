@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
         String usernameString = username.getText().toString();
         String passwordString = password.getText().toString();
 
+        if (usernameString.isEmpty() || passwordString.isEmpty()) {
+            Toast.makeText(this, "Username/Password fields cannot be empty",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
         // UPDATED 11/17/24 Hash the password before checking against the database
         String hashedPassword = Security.hashPassword(passwordString);
 
@@ -63,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, OverviewActivity.class);
             // fetch the user's id and pass it to the new activity
             //  so that it can be used by the fragments when fetching data
-            intent.putExtra("userId", (CharSequence) username);
+            intent.putExtra("userId", usernameString);
             // Start the next activity
             startActivity(intent);
         } else {
             Toast.makeText(this, "The Username/Password You Entered is Incorrect!",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -41,6 +41,7 @@ public class OverviewActivity extends AppCompatActivity {
     // The userId to identify a user's data in a database query
     String userId;
 
+    public static DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class OverviewActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Create a static DatabaseHelper object that can be used by all of the fragments
+        dbHelper = new DatabaseHelper(this);
 
         Intent intent = getIntent();
         userId = Arrays.toString(intent.getCharArrayExtra("userId"));

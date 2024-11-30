@@ -17,11 +17,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_DOB = "dob";
 
-    public static DatabaseHelper dbHelper;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        dbHelper = new DatabaseHelper(context);
     }
 
     @Override
@@ -53,16 +51,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean checkLogin(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
+        // TODO make sure we can't have duplicate users
+        //  this might be handled by the username primary key column
         String query = "SELECT * FROM " + TABLE_USERS + " WHERE " +
                 COLUMN_USERNAME + " = ? AND " +
                 COLUMN_PASSWORD + " = ?";
         Cursor cursor = db.rawQuery(query, new String[]{username, password});
 
-        // TODO double check that cursor.getCount() actually returns the correct value
-        boolean exists = cursor.getCount() > 0;
+        // Check to see if there is a user with that information in the database
+        int rowCount = 0;
+
+        cursor.moveToFirst();
+        while (rowCount <= 0 && !cursor.isLast()) {
+            rowCount++;
+            cursor.moveToNext();
+        }
+
+        boolean validUserExists = rowCount == 1;
 
         cursor.close();
         db.close();
-        return exists; // Return true if username/password is valid
+        return validUserExists; // Return true if username/password is valid
     }
 }

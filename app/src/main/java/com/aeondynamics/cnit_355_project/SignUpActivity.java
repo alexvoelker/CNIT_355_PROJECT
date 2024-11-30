@@ -70,9 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
             Intent intent = new Intent(this, OverviewActivity.class);
             // fetch the newly created user's id and pass it to the new activity
             //  so that it can be used by the fragments when fetching data
-            String userId = usernameString;
-
-            intent.putExtra("userId", userId);
+            intent.putExtra("userId", usernameString);
             startActivity(intent);
         } //UPDATED 11/17/24 with hashed password stuff
 
