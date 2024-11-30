@@ -8,6 +8,7 @@
     <string name="back">BACK</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="passwordDoubleCheck">Re-Enter Password</string>
     <string name="DOB">Birthday: mm/dd/yyyy</string>
     <string name="overview">OVERVIEW</string>
     <string name="billCalendar">BILL CALENDAR</string>

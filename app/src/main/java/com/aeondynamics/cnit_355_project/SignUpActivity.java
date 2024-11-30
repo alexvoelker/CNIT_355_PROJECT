@@ -15,8 +15,14 @@ import androidx.core.view.WindowInsetsCompat;
 import java.io.Serializable;
 
 public class SignUpActivity extends AppCompatActivity {
-    IUserData data;
     String accountCreationFailureMessage;
+
+    EditText username;
+    EditText password;
+    EditText passwordDoubleCheck;
+
+    // dob -> user's data of birth
+    EditText dob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,11 @@ public class SignUpActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        username = findViewById(R.id.editTextNewUsername);
+        password = findViewById(R.id.editTextNewPassword);
+        passwordDoubleCheck = findViewById(R.id.editTextNewPasswordDoubleCheck);
+        dob = findViewById(R.id.editTextNewDOB);
     }
 
     public void onClickBack(View view) {
@@ -42,49 +53,53 @@ public class SignUpActivity extends AppCompatActivity {
      * If not, display an error message
      */
     public void onClickSignUp(View view) {
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
-
-        EditText username = findViewById(R.id.editTextNewUsername);
         String usernameString = username.getText().toString();
-        EditText password = findViewById(R.id.editTextNewPassword);
         String passwordString = password.getText().toString();
+        String passwordDoubleCheckString = passwordDoubleCheck.getText().toString();
 
         //can change later if group decides different approach
         String hashedPassword = Security.hashPassword(passwordString);
+        String hashedPasswordDoubleCheck = Security.hashPassword(passwordDoubleCheckString);
 
-        // dob -> user's data of birth
-        EditText dob = findViewById(R.id.editTextNewDOB);
         String dobString = dob.getText().toString();
-        // TODO add more fields as necessary to create a proper account
 
-        if (!checkValidAccount(usernameString, hashedPassword)) {
+        // using the hashed password in checkValid Account for security
+        if (!checkValidAccount(usernameString, hashedPassword, hashedPasswordDoubleCheck)) {
             Toast.makeText(this, accountCreationFailureMessage, Toast.LENGTH_SHORT).show();
         } else {
-            //data = new UserData(usernameString, passwordString, dobString);
-            data = new UserData(usernameString, hashedPassword, dobString);
-            Intent intent = new Intent(this, LoadingActivity.class);
-            intent.putExtra("userData", (Serializable) data);
-            intent.putExtra("requestType", RequestType.UPDATE_SERVER_RECORDS);
+            Intent intent = new Intent(this, OverviewActivity.class);
+            // fetch the newly created user's id and pass it to the new activity
+            //  so that it can be used by the fragments when fetching data
+            String userId = usernameString;
+
+            intent.putExtra("userId", userId);
             startActivity(intent);
         } //UPDATED 11/17/24 with hashed password stuff
 
     }
 
-    private boolean checkValidAccount(String username, String password) {
-        // TODO make sure that the username hasn't been taken by another
+    private boolean checkValidAccount(String username, String password, String passwordDoubleCheck) {
+        //DONE make sure that the username hasn't been taken by another
         //  account, and that the password meets our requirements
         //DONE with verifying username, need to discuss pw requirements still
-        // TODO set the value of accountCreationFailureMessage corresponding to what the error is
+        //DONE set the value of accountCreationFailureMessage corresponding to what the error is
         //DONE
+
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        if (username.isEmpty() || password.isEmpty()) {
-            accountCreationFailureMessage = "Username and Password cannot be empty";
+        if (username.isEmpty() || password.isEmpty() || passwordDoubleCheck.isEmpty()) {
+            // Make sure a required field isn't empty so the new user won't have
+            accountCreationFailureMessage = "Username and Password fields cannot be empty";
             return false;
-        }
-        if (dbHelper.checkLogin(username, password)) {
+        } else if (!password.equals(passwordDoubleCheck)) {
+            // Make sure both password fields match
+            accountCreationFailureMessage = "Both password fields must match";
+            return false;
+        } else if (dbHelper.checkLogin(username, password)) {
+            // Check if the user already exists
             accountCreationFailureMessage = "Username already exists";
             return false;
         }
+
         // More validation here (e.g., password strength checks)
         return true;
     } //UPDATED 11/17/24
