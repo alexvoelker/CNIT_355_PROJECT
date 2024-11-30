@@ -57,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
         String dobString = dob.getText().toString();
         // TODO add more fields as necessary to create a proper account
 
-        if (!checkValidAccount(usernameString, passwordString)) {
+        if (!checkValidAccount(usernameString, hashedPassword)) {
             Toast.makeText(this, accountCreationFailureMessage, Toast.LENGTH_SHORT).show();
         } else {
             //data = new UserData(usernameString, passwordString, dobString);

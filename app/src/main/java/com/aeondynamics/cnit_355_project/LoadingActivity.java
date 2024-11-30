@@ -2,6 +2,7 @@ package com.aeondynamics.cnit_355_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class LoadingActivity extends AppCompatActivity {
     IUserData data;
     Intent passedData;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

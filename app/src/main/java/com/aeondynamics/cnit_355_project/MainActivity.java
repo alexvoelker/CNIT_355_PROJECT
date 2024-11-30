@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         if (loginSuccess) {
             Intent intent = new Intent(this, LoadingActivity.class);
             // Pass the user data to be loaded in to the next activity
-            data = new UserData(usernameString, passwordString);
+            data = new UserData(usernameString, hashedPassword);
             intent.putExtra("userData", (Serializable) data);
             intent.putExtra("requestType", RequestType.FETCH_FROM_SERVER);
             // Start the next activity
