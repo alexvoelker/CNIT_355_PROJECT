@@ -2,6 +2,7 @@ package com.aeondynamics.cnit_355_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,8 +22,10 @@ public class SignUpActivity extends AppCompatActivity {
     EditText password;
     EditText passwordDoubleCheck;
 
-    // dob -> user's data of birth
+    // dob: user's data of birth
     EditText dob;
+
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class SignUpActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        dbHelper = new DatabaseHelper(this);
 
         username = findViewById(R.id.editTextNewUsername);
         password = findViewById(R.id.editTextNewPassword);
@@ -65,14 +70,21 @@ public class SignUpActivity extends AppCompatActivity {
 
         // using the hashed password in checkValid Account for security
         if (!checkValidAccount(usernameString, hashedPassword, hashedPasswordDoubleCheck)) {
-            Toast.makeText(this, accountCreationFailureMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, accountCreationFailureMessage, Toast.LENGTH_LONG).show();
         } else {
+            // Add the user to the database
+            boolean success = dbHelper.addUser(usernameString, hashedPassword, dobString);
+            if (!success) {
+                Toast.makeText(this,
+                        "Failed to create new user", Toast.LENGTH_LONG).show();
+                return;
+            }
             Intent intent = new Intent(this, OverviewActivity.class);
             // fetch the newly created user's id and pass it to the new activity
             //  so that it can be used by the fragments when fetching data
             intent.putExtra("userId", usernameString);
             startActivity(intent);
-        } //UPDATED 11/17/24 with hashed password stuff
+        }
 
     }
 
@@ -83,7 +95,6 @@ public class SignUpActivity extends AppCompatActivity {
         //DONE set the value of accountCreationFailureMessage corresponding to what the error is
         //DONE
 
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
         if (username.isEmpty() || password.isEmpty() || passwordDoubleCheck.isEmpty()) {
             // Make sure a required field isn't empty so the new user won't have
             accountCreationFailureMessage = "Username and Password fields cannot be empty";
@@ -100,5 +111,5 @@ public class SignUpActivity extends AppCompatActivity {
 
         // More validation here (e.g., password strength checks)
         return true;
-    } //UPDATED 11/17/24
+    }
 }

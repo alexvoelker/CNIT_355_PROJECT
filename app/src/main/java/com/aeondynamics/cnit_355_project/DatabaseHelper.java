@@ -1,11 +1,12 @@
 package com.aeondynamics.cnit_355_project;
 //UPDATED 11/17/24
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -61,12 +62,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Check to see if there is a user with that information in the database
         int rowCount = 0;
 
-        cursor.moveToFirst();
-        while (rowCount <= 0 && !cursor.isLast()) {
+        // Used moved to ensure that the cursor is actually moving to a row of not-blank data
+        boolean moved = true;
+        while (moved && rowCount < 1 && !cursor.isLast()) {
             rowCount++;
-            cursor.moveToNext();
+            moved = cursor.moveToNext();
         }
 
+        // The user is valid if there is only one of them per username.
+        // Checking for the combination of username and password would show (if correct)
+        // that there is one record present with that combination, indicating a correct login.
+        // If there are zero of these combinations, the password is not correct for the username.
+        // If there is somehow more than one of these combinations present in the database,
+        // something's wrong and this is defensibility a wrong login
         boolean validUserExists = rowCount == 1;
 
         cursor.close();
