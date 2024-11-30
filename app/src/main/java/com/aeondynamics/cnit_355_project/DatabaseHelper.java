@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -16,8 +17,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_DOB = "dob";
 
+    public static DatabaseHelper dbHelper;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        dbHelper = new DatabaseHelper(context);
     }
 
     @Override
@@ -54,7 +58,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_PASSWORD + " = ?";
         Cursor cursor = db.rawQuery(query, new String[]{username, password});
 
+        // TODO double check that cursor.getCount() actually returns the correct value
         boolean exists = cursor.getCount() > 0;
+
         cursor.close();
         db.close();
         return exists; // Return true if username/password is valid

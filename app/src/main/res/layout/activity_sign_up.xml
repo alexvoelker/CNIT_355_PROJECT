@@ -77,15 +77,28 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextNewUsername" />
 
     <EditText
+        android:id="@+id/editTextNewPasswordDoubleCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/passwordDoubleCheck"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNewPassword" />
+
+    <EditText
         android:id="@+id/editTextNewDOB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/DOB"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNewPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNewPasswordDoubleCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

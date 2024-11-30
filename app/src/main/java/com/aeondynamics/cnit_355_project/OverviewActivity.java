@@ -17,8 +17,9 @@ import com.aeondynamics.cnit_355_project.fragment.DebtTrackerFragment;
 import com.aeondynamics.cnit_355_project.fragment.OverviewFragment;
 import com.aeondynamics.cnit_355_project.fragment.ReceiptScannerFragment;
 
+import java.util.Arrays;
+
 public class OverviewActivity extends AppCompatActivity {
-    IUserData data;
 
     // Fragment '0'
     OverviewFragment overviewFragment;
@@ -37,6 +38,9 @@ public class OverviewActivity extends AppCompatActivity {
     Button debtTrackerNavButton;
     Button receiptScannerNavButton;
 
+    // The userId to identify a user's data in a database query
+    String userId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,7 @@ public class OverviewActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        data = (IUserData) intent.getSerializableExtra("userData");
+        userId = Arrays.toString(intent.getCharArrayExtra("userId"));
 
         overviewFragment = new OverviewFragment();
         billsCalendarFragment = new BillsCalendarFragment();
