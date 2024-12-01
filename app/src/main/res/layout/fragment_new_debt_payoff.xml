@@ -96,15 +96,15 @@
 
                 <TextView
                     android:id="@+id/textView10"
-                    android:layout_width="224dp"
+                    android:layout_width="170dp"
                     android:layout_height="44dp"
-                    android:text="Current Monthly Payment:"
+                    android:text="Total Debt Amount:"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/monthlyPayment"
-                    android:layout_width="220dp"
+                    android:layout_width="282dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="numberDecimal" />
@@ -145,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Loan Maturity Date:"
+                    android:text="Desired Payoff Months:"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
