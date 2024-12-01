@@ -1,18 +1,26 @@
 package com.aeondynamics.cnit_355_project;
 
+import java.util.Date;
+
 public class Bill {
+    private String currentDate;
     private String title;
     private String description;
     private String amount;
     private String date;
 
 
-    public Bill(String title, String description) {
+    public Bill(String title, String description, String amount, String date) {
         this.title = title;
         this.description = description;
         this.amount = amount;
         this.date = date;
 
+    }
+
+
+    public Bill(String newBill, String currentDate) {
+        this.currentDate = currentDate;
     }
 
     public String getTitle() {
@@ -26,8 +34,8 @@ public class Bill {
     public String getAmount() {
         return amount;
 
-
-    }    public String getDate() {
+    }
+    public String getDueDate() {
         return date;
     }
 }

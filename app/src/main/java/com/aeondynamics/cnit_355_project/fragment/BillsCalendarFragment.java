@@ -17,7 +17,10 @@ import com.aeondynamics.cnit_355_project.BillAdapter;
 import com.aeondynamics.cnit_355_project.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +48,9 @@ public class BillsCalendarFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    Map<String, List<Bill>> billsMap = new HashMap<>();
+    List<Bill> displayedBills = new ArrayList<>();
+    BillAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,28 +59,61 @@ public class BillsCalendarFragment extends Fragment {
 //          TODO: Fix later
 //           mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        // Setup RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.rv_bills_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        List<Bill> bills = new ArrayList<>();
-
-        BillAdapter adapter = new BillAdapter(bills);
-        recyclerView.setAdapter(adapter);
-
-        // Setup CalendarView (Add custom logic later for date selection)
-        CalendarView calendarView = findViewById(R.id.calendar_view);
-        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            // Handle date selection stuff here
-        });
-
+    }
+    private void addBillToMap(Bill bill) {
+        String date = bill.getDueDate();
+        if (!billsMap.containsKey(date)) {
+            billsMap.put(date, new ArrayList<>());
+        }
+        billsMap.get(date).add(bill);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bills_calendar, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_bills_calendar, container, false);
+
+        RecyclerView recyclerView = view.findViewById(R.id.rv_bills_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        adapter = new BillAdapter(displayedBills);
+        recyclerView.setAdapter(adapter);
+
+        CalendarView calendarView = view.findViewById(R.id.calendar_view);
+        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
+            String selectedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
+            updateDisplayedBills(selectedDate);
+        });
+
+        Button addBillButton = view.findViewById(R.id.btn_add_bill);
+        addBillButton.setOnClickListener(v -> {
+            // Add a new bill to the selected date
+            String currentDate = getCurrentCalendarDate(calendarView);
+            Bill newBill = new Bill("New Bill", currentDate);
+            addBillToMap(newBill);
+            updateDisplayedBills(currentDate);
+        });
+
+        return view;
+    }
+
+
+    private void updateDisplayedBills(String date) {
+        displayedBills.clear();
+        if (billsMap.containsKey(date)) {
+            displayedBills.addAll(billsMap.get(date));
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    private String getCurrentCalendarDate(CalendarView calendarView) {
+        long dateMillis = calendarView.getDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(dateMillis);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        return String.format("%04d-%02d-%02d", year, month, day);
     }
 }
