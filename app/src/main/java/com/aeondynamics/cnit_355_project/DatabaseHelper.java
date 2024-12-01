@@ -6,7 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -17,6 +19,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_DOB = "dob";
+
+    private static final String TABLE_DEBT_PAYOFF = "debt_payoff";
+    private static final String COLUMN_USER_ID = "user_id";
+    private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_DESCRIPTION = "description";
+    private static final String COLUMN_MONTHLY_PAYMENT = "monthlyPayment";
+    private static final String COLUMN_INTEREST_RATE = "interestRate";
+    private static final String COLUMN_LOAN_MATURITY = "loanMaturity";
+
 
 
     public DatabaseHelper(Context context) {
@@ -30,13 +41,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_PASSWORD + " TEXT, " +
                 COLUMN_DOB + " TEXT)";
         db.execSQL(createTable);
+
+        createTable = "CREATE TABLE " + TABLE_DEBT_PAYOFF + " (" +
+                COLUMN_USER_ID + "TEXT PRIMARY KEY," +
+                COLUMN_NAME + "TEXT PRIMARY KEY, " +
+                COLUMN_DESCRIPTION + "TEXT," +
+                COLUMN_MONTHLY_PAYMENT + "TEXT," +
+                COLUMN_INTEREST_RATE + "TEXT," +
+                COLUMN_LOAN_MATURITY + "TEXT)";
+        db.execSQL(createTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DEBT_PAYOFF);
         onCreate(db);
     }
+
 
     public boolean addUser(String username, String password, String dob) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -80,5 +102,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return validUserExists; // Return true if username/password is valid
+    }
+
+    public boolean addDebtItem(String userId, String name, String description, double monthlyPayment, double interestRate, int loanMaturity) {
+        return false;
+        // TODO fill out this method
+    }
+
+    public boolean addExpenses(String userId, ArrayList<HashMap<String, String>> expenses) {
+        // Check to see if the expenses table exists
+        //  create it if it doesn't exist
+
+        // Then for each expense in the expenses list, add that to the expenses table for the given user (by their userId)
+        // should be inserting all of the items at once
+
+        // Pass in a null for the expenseId for it to autoincrement,
+        // as per: https://stackoverflow.com/questions/7905859/is-there-auto-increment-in-sqlite
+
+
+
+        // return true if all inserts were successful, false if any failed
+
+
+        // TODO finish this method
+        return false;
     }
 }

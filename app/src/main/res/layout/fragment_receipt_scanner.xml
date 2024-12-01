@@ -5,10 +5,49 @@
     android:layout_height="match_parent"
     tools:context=".fragment.ReceiptScannerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="fragment receipt scanner" />
+        android:layout_gravity="start|top"
+        android:baselineAligned="false"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/expense_tracker"
+            android:textAlignment="center"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/record_your_expenses"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/expenseTrackerInputField"
+            style="@style/Widget.Material3.AutoCompleteTextView.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="start|top"
+            android:hint="Type; price\nType; price\nType; price"
+            android:inputType="textMultiLine"
+            android:textAlignment="gravity"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonAdd"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_items_to_budget"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </FrameLayout>

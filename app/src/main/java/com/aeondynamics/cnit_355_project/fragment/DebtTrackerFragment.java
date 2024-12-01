@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.aeondynamics.cnit_355_project.R;
@@ -36,8 +37,18 @@ public class DebtTrackerFragment extends Fragment {
             Log.e("DATABASE", "Fragment DebtTrackerFragment passed null userId");
         }
 
-        TextView tv = rootView.findViewById(R.id.textView1);
+        TextView tv = rootView.findViewById(R.id.textView5);
         tv.setText("Java edited text; debt tracker activity\n\nWelcome: " + userId);
+
+
+//        Button button = rootView.findViewById(R.id.button);
+//        button.setOnClickListener(v -> {
+//            NewDebtPayoffFragment newFragment = new NewDebtPayoffFragment();
+//            Bundle args = new Bundle();
+//            args.putString("userId", userId);
+//            newFragment.setArguments(args);
+//            getChildFragmentManager().beginTransaction().add(R.id.newDebtPayoffFragment, newFragment).commit();
+//        });
 
         return rootView;
 
