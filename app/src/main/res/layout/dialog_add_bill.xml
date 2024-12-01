@@ -1,0 +1,39 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/et_bill_name"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Bill Name"
+        android:inputType="text"
+        android:padding="8dp"  />
+
+    <EditText
+        android:id="@+id/et_bill_description"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Bill Description"
+        android:inputType="text"
+        android:padding="8dp"/>
+
+    <EditText
+        android:id="@+id/et_bill_amount"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Bill Amount"
+        android:inputType="numberDecimal"
+        android:padding="8dp"/>
+
+    <EditText
+        android:id="@+id/et_bill_date"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Bill Due Date"
+        android:inputType="text"
+        android:padding="8dp"/>
+</LinearLayout>
