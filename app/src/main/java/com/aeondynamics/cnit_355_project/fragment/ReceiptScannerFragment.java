@@ -80,21 +80,28 @@ public class ReceiptScannerFragment extends Fragment {
 
         for (String line : expenseItems) {
             HashMap<String, String> item = new HashMap<>();
+
+            // Skip blank rows
+            if (line.isEmpty())
+                continue;
+
             String[] lineItems = line.split(";");
             try {
-                if (lineItems.length > 2)
+                if (lineItems.length != 2)
                     // There shouldn't be more than two items (the type and cost) per expense item
                     throw new Exception();
 
-                String type = lineItems[0];
-                Double cost;
+                lineItems[1] = lineItems[1].replaceAll("\\s+", "");
 
                 // Parse the cost
-                if (lineItems[1].matches("/\\$.+/gm")) {
+                if (lineItems[1].matches("[$].+"))
                     lineItems[1] = lineItems[1].substring(1);
-                }
 
-                cost = Double.parseDouble(lineItems[1]);
+                // Remove whitespace from the input
+                lineItems[0] = lineItems[0].replaceAll("\\s+", "");
+                lineItems[1] = lineItems[1].replaceAll("\\s+", "");
+                String type = lineItems[0];
+                double cost = Double.parseDouble(lineItems[1]);
 
                 item.put("type", type);
                 item.put("cost", String.format("%.2f", cost));

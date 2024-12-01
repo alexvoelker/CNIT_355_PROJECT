@@ -8,36 +8,28 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/overview"
-            android:layout_width="wrap_content"
+            android:id="@+id/textViewTitleOverview"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Overview"
-            android:textSize="48sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="16dp" />
+            android:textAlignment="center"
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="445dp"
-            android:layout_height="441dp"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="555dp">
+        <TextView
+            android:id="@+id/textViewSubtitle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upcoming Monthly Expenses"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/upcomingExpenses"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Upcoming Monthly Expenses"
-                android:textAlignment="center"
-                android:textSize="34sp" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>

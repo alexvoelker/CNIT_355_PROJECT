@@ -13,7 +13,7 @@
     <string name="overview">OVERVIEW</string>
     <string name="billCalendar">BILL CALENDAR</string>
     <string name="debtTracker">DEBT TRACKER</string>
-    <string name="receiptScanner">RECEIPT SCANNER</string>
+    <string name="receiptScanner">Expense Tracker</string>
     <string name="btnAddBill">Add Bill to List</string>
 
 

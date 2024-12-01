@@ -103,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
             // Make sure both password fields match
             accountCreationFailureMessage = "Both password fields must match";
             return false;
-        } else if (dbHelper.checkLogin(username, password)) {
+        } else if (dbHelper.checkExistingUser(username)) {
             // Check if the user already exists
             accountCreationFailureMessage = "Username already exists";
             return false;

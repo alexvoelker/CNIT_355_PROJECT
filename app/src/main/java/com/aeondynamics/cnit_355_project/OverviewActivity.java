@@ -57,6 +57,9 @@ public class OverviewActivity extends AppCompatActivity {
         // Create a static DatabaseHelper object that can be used by all of the fragments
         dbHelper = new DatabaseHelper(this);
 
+        dbHelper.openDB(); // TODO remove this later so the database doesn't cause a memory leak!
+//        dbHelper.onUpgrade(dbHelper.getWritableDatabase(), 1, 1);
+
         userId = getIntent().getStringExtra("userId");
 
         Bundle args = new Bundle();

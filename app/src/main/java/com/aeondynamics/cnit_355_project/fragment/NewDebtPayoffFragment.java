@@ -47,8 +47,8 @@ public class NewDebtPayoffFragment extends Fragment {
         }
 
 
-        billName = rootView.findViewById(R.id.billName);
-        description = rootView.findViewById(R.id.Description);
+        billName = rootView.findViewById(R.id.name);
+        description = rootView.findViewById(R.id.editTextText2);
         monthlyPayment = rootView.findViewById(R.id.monthlyPayment);
         interest = rootView.findViewById(R.id.interest);
         loanMaturity = rootView.findViewById(R.id.loanMonths);
