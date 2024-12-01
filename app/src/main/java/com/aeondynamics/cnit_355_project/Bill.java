@@ -1,9 +1,7 @@
 package com.aeondynamics.cnit_355_project;
 
-import java.util.Date;
 
 public class Bill {
-    private String currentDate;
     private String title;
     private String description;
     private String amount;
@@ -18,9 +16,7 @@ public class Bill {
 
     }
 
-
-    public Bill(String newBill, String currentDate) {
-        this.currentDate = currentDate;
+    public Bill(String billName, String date, String billAmount) {
     }
 
     public String getTitle() {

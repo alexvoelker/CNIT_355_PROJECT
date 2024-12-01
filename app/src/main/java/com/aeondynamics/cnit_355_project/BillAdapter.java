@@ -27,6 +27,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.BillViewHolder
         holder.title.setText(bill.getTitle());
         holder.description.setText(bill.getDescription());
         holder.amount.setText(bill.getAmount());
+        holder.date.setText(bill.getDueDate());
     }
 
     @Override
