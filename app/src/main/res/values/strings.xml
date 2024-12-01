@@ -17,6 +17,9 @@
     <string name="btnAddBill">Add Bill to List</string>
 
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_items_here_to_record_your_spending">Add items here to record your spending</string>
+    <string name="add_items_to_budget">Add Items to Budget</string>
+    <string name="record_your_expenses">Record Your Expenses</string>
+    <string name="expense_tracker">Expense Tracker</string>
 </resources>

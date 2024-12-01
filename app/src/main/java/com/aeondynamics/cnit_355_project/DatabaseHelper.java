@@ -6,7 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -116,5 +118,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return result != -1;
         // TODO fill out this method
+    }
+
+    public boolean addExpenses(String userId, ArrayList<HashMap<String, String>> expenses) {
+        // Check to see if the expenses table exists
+        //  create it if it doesn't exist
+
+        // Then for each expense in the expenses list, add that to the expenses table for the given user (by their userId)
+        // should be inserting all of the items at once
+
+        // Pass in a null for the expenseId for it to autoincrement,
+        // as per: https://stackoverflow.com/questions/7905859/is-there-auto-increment-in-sqlite
+
+
+
+        // return true if all inserts were successful, false if any failed
+
+
+        // TODO finish this method
+        return false;
     }
 }
