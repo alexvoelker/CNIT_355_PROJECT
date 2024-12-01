@@ -90,7 +90,7 @@ public class ReceiptScannerFragment extends Fragment {
                 Double cost;
 
                 // Parse the cost
-                if (lineItems[1].matches("\\$\\S+")) {
+                if (lineItems[1].matches("/\\$.+/gm")) {
                     lineItems[1] = lineItems[1].substring(1);
                 }
 

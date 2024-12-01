@@ -3,6 +3,7 @@ package com.aeondynamics.cnit_355_project.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,18 +38,22 @@ public class DebtTrackerFragment extends Fragment {
             Log.e("DATABASE", "Fragment DebtTrackerFragment passed null userId");
         }
 
-        TextView tv = rootView.findViewById(R.id.textView5);
-        tv.setText("Java edited text; debt tracker activity\n\nWelcome: " + userId);
+        Button button = rootView.findViewById(R.id.button);
+        button.setOnClickListener(v -> {
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
 
+            NewDebtPayoffFragment newFragment = new NewDebtPayoffFragment();
+            Bundle args = new Bundle();
+            args.putString("userId", userId);
+            newFragment.setArguments(args);
 
-//        Button button = rootView.findViewById(R.id.button);
-//        button.setOnClickListener(v -> {
-//            NewDebtPayoffFragment newFragment = new NewDebtPayoffFragment();
-//            Bundle args = new Bundle();
-//            args.putString("userId", userId);
-//            newFragment.setArguments(args);
-//            getChildFragmentManager().beginTransaction().add(R.id.newDebtPayoffFragment, newFragment).commit();
-//        });
+            transaction.replace(R.id.fragmentContainerView, newFragment);
+
+            // Add the back stack name so this transaction
+            // can be reversed when the form is filled out
+            transaction.addToBackStack("newDebtForm");
+            transaction.commit();
+        });
 
         return rootView;
 
