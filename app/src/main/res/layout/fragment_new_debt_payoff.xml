@@ -21,7 +21,25 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5">
 
+            <TextView
+                android:id="@+id/debtfragmentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Debt Form"
+                android:textAlignment="center"
+                android:textSize="48sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/debtformInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please fill out the form below:"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
             <LinearLayout
+                android:id="@+id/debtformDescription"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
                 android:orientation="horizontal">
@@ -32,7 +50,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Debt Name: "
-                    android:textSize="18sp" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/name"
@@ -55,7 +75,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Description:"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/editTextText2"
@@ -63,7 +85,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -73,14 +96,15 @@
 
                 <TextView
                     android:id="@+id/textView10"
-                    android:layout_width="224dp"
+                    android:layout_width="170dp"
                     android:layout_height="44dp"
-                    android:text="Current Monthly Payment:"
-                    android:textSize="18sp" />
+                    android:text="Total Debt Amount:"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/monthlyPayment"
-                    android:layout_width="220dp"
+                    android:layout_width="282dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="numberDecimal" />
@@ -98,7 +122,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Interest Rate:"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/interest"
@@ -120,8 +145,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Loan Maturity Date:"
-                    android:textSize="18sp" />
+                    android:text="Desired Payoff Months:"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/loanMonths"
