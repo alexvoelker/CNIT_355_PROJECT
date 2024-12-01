@@ -104,7 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return validUserExists; // Return true if username/password is valid
     }
 
-    public boolean addDebtItem(String name, String description, double monthlyPayment, double interestRate, int loanMaturity) {
+    public boolean addDebtItem(String userId, String name, String description, double monthlyPayment, double interestRate, int loanMaturity) {
         return false;
         // TODO fill out this method
     }
