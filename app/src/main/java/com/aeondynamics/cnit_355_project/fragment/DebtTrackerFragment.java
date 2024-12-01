@@ -37,7 +37,7 @@ public class DebtTrackerFragment extends Fragment {
             Log.e("DATABASE", "Fragment DebtTrackerFragment passed null userId");
         }
 
-        TextView tv = rootView.findViewById(R.id.textView1);
+        TextView tv = rootView.findViewById(R.id.textView5);
         tv.setText("Java edited text; debt tracker activity\n\nWelcome: " + userId);
 
 
