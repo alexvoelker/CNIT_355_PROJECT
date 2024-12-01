@@ -23,7 +23,7 @@
 
             <EditText
                 android:id="@+id/billName"
-                android:layout_width="411dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
@@ -31,7 +31,7 @@
 
             <EditText
                 android:id="@+id/Description"
-                android:layout_width="413dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
@@ -51,7 +51,7 @@
 
                 <EditText
                     android:id="@+id/monthlyPayment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="numberDecimal" />
@@ -82,7 +82,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="369dp"
+                android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:orientation="horizontal">
 
@@ -96,12 +96,11 @@
 
                 <EditText
                     android:id="@+id/loanMonths"
-                    android:layout_width="wrap_content"
+                    android:layout_width="199dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="text"
-                    />
+                    android:inputType="text" />
 
             </LinearLayout>
 

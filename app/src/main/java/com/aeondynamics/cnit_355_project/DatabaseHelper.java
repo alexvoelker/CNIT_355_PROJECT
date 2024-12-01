@@ -102,8 +102,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return validUserExists; // Return true if username/password is valid
     }
 
-    public boolean addDebtItem(String name, String description, double monthlyPayment, double interestRate, int loanMaturity) {
-        return false;
+    public boolean addDebtItem(String user_id, String name, String description, double monthlyPayment, double interestRate, int loanMaturity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USER_ID, user_id);
+        values.put(COLUMN_NAME, name);
+        values.put(COLUMN_DESCRIPTION, description);
+        values.put(COLUMN_MONTHLY_PAYMENT, monthlyPayment);
+        values.put(COLUMN_INTEREST_RATE, interestRate);
+        values.put(COLUMN_LOAN_MATURITY, loanMaturity);
+
+        long result = db.insert(TABLE_DEBT_PAYOFF, null,values);
+        db.close();
+        return result != -1;
         // TODO fill out this method
     }
 }
