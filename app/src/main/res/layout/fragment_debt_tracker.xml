@@ -13,11 +13,12 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="403dp"
-            android:layout_height="42dp"
+            android:layout_width="441dp"
+            android:layout_height="44dp"
             android:text="Track New Debt"
             tools:layout_editor_absoluteX="5dp"
-            tools:layout_editor_absoluteY="334dp" />
+            tools:layout_editor_absoluteY="334dp"
+            app:cornerRadius="0dp"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -38,8 +39,8 @@
             tools:layout_editor_absoluteY="92dp" />
 
         <ScrollView
-            android:layout_width="389dp"
-            android:layout_height="207dp"
+            android:layout_width="431dp"
+            android:layout_height="201dp"
             tools:layout_editor_absoluteX="11dp"
             tools:layout_editor_absoluteY="127dp">
 
@@ -49,7 +50,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
+                    android:layout_width="424dp"
                     android:layout_height="match_parent" />
             </LinearLayout>
         </ScrollView>
