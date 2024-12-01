@@ -57,13 +57,23 @@ public class OverviewActivity extends AppCompatActivity {
         // Create a static DatabaseHelper object that can be used by all of the fragments
         dbHelper = new DatabaseHelper(this);
 
-        Intent intent = getIntent();
-        userId = Arrays.toString(intent.getCharArrayExtra("userId"));
+        userId = getIntent().getStringExtra("userId");
+
+        Bundle args = new Bundle();
+        args.putString("userId", userId);
 
         overviewFragment = new OverviewFragment();
+        overviewFragment.setArguments(args);
+
         billsCalendarFragment = new BillsCalendarFragment();
+        billsCalendarFragment.setArguments(args);
+
         debtTrackerFragment = new DebtTrackerFragment();
+        debtTrackerFragment.setArguments(args);
+
         receiptScannerFragment = new ReceiptScannerFragment();
+        receiptScannerFragment.setArguments(args);
+
 
         overviewNavButton = findViewById(R.id.navOverview);
         overviewNavButton.setOnClickListener(e -> changeFragment(0));
