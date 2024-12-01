@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".fragment.DebtTrackerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,36 +23,55 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="70dp"
             android:text="Debt Tracker"
             android:textSize="48sp"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="20dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="86dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="87dp"
             android:text="Organize and Payoff Debts"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="86dp"
-            tools:layout_editor_absoluteY="92dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <ScrollView
-            android:layout_width="431dp"
-            android:layout_height="201dp"
-            tools:layout_editor_absoluteX="11dp"
-            tools:layout_editor_absoluteY="127dp">
+        <LinearLayout
+            android:id="@+id/linearLayoutDebts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="424dp"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-        </ScrollView>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="403dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="3dp"
+            android:text="Track New Debt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutDebts" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

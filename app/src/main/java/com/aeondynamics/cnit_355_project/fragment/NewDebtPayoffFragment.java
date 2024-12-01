@@ -3,6 +3,7 @@ package com.aeondynamics.cnit_355_project.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,6 +69,11 @@ public class NewDebtPayoffFragment extends Fragment {
                         monthlyPaymentDouble, interestDouble, loadMaturityInteger);
                 if (!succeeded)
                     throw new Exception();
+
+                Toast.makeText(getContext(), "Records updated successfully!",
+                        Toast.LENGTH_LONG).show();
+                // At this point, the insert succeeded, so return the user back to the DebtTrackerFragment
+                getParentFragmentManager().popBackStack();
 
             } catch (Exception ex) {
                 Toast.makeText(getContext(), "Failed to add new debt record to database.",
