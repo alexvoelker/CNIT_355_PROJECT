@@ -74,7 +74,6 @@ public class ReceiptScannerFragment extends Fragment {
     }
 
     public boolean parseAndUpdateExpenses(String[] expenseItems) {
-        // TODO fill out this method
         Log.i("EXPENSE TRACKER", "Items: " + Arrays.toString(expenseItems));
         ArrayList<HashMap<String, String>> expenses = new ArrayList<>();
 

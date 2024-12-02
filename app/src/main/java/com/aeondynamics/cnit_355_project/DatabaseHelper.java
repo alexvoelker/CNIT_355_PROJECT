@@ -1,5 +1,6 @@
 package com.aeondynamics.cnit_355_project;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -44,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_DOB + " TEXT NOT NULL)";
         db.execSQL(createTable);
 
-       createTable = "CREATE TABLE " + TABLE_DEBT_PAYOFF + " (" +
+        createTable = "CREATE TABLE " + TABLE_DEBT_PAYOFF + " (" +
                 COLUMN_NAME + " TEXT PRIMARY KEY, " +
                 COLUMN_USER_ID + " TEXT NOT NULL," +
                 COLUMN_DESCRIPTION + " TEXT NOT NULL," +
@@ -140,8 +143,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_USER_ID, user_id);
         values.put(COLUMN_DESCRIPTION, description);
-        values.put(COLUMN_ORIGINAL_COST, "" + monthlyPayment);
-        values.put(COLUMN_INTEREST_RATE, "" + interestRate);
+        values.put(COLUMN_ORIGINAL_COST, String.format(Locale.US, "%.2f", monthlyPayment));
+        values.put(COLUMN_INTEREST_RATE, interestRate);
         values.put(COLUMN_LOAN_MATURITY, "" + loanMaturity);
         long result = db.insert(TABLE_DEBT_PAYOFF, null, values);
 
@@ -150,16 +153,77 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    /**
+     * Fetch the debts associated with a given user account
+     *
+     * @param userId the account to fetch debts on
+     * @return A List of Debt objects for each debt being tracked for this user.
+     * Returns null if no debts are being tracked (no results in database)
+     */
+    @SuppressLint("Range")
+    public List<Debt> getUserDebts(String userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List<Debt> debtList = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_DEBT_PAYOFF +
+                " WHERE " + COLUMN_USER_ID + " = ?", new String[]{userId});
+
+        // Add each debt the person has to the debtList
+        boolean moved = cursor.moveToFirst();
+        if (!moved) {
+            return null;
+        }
+
+        while (moved) {
+            try {
+                String debtName = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+                String debtDescription = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
+
+                String originalCost = cursor.getString(cursor.getColumnIndex(COLUMN_ORIGINAL_COST));
+                String interestRate = cursor.getString(cursor.getColumnIndex(COLUMN_INTEREST_RATE));
+                String numberOfMonths = cursor.getString(cursor.getColumnIndex(COLUMN_LOAN_MATURITY));
+
+                String monthlyContribution = getMonthlyContribution(originalCost,
+                        interestRate, numberOfMonths);
+
+
+                debtList.add(new Debt(debtName, debtDescription, monthlyContribution, numberOfMonths));
+            } catch (NumberFormatException ex) {
+                // Catch exceptions for when the data in the database if malformed
+            }
+
+            moved = cursor.moveToNext();
+        }
+
+        db.close();
+        return debtList;
+    }
+
+    /**
+     * Calculate the contribution amount per month to pay off the
+     * debt by the specified time and with the given interest rate
+     * @param originalCost
+     * @param interestRate
+     * @param numberOfMonths
+     * @return the monthly contribution dollar value
+     * @throws NumberFormatException
+     */
+    private String getMonthlyContribution(String originalCost, String interestRate, String numberOfMonths) throws NumberFormatException {
+        // TODO make sure this math is right
+
+        double total_cost = Double.parseDouble(originalCost);
+        double int_rate = Double.parseDouble(interestRate);
+        int months = Integer.parseInt(numberOfMonths);
+
+        double monthly_contribution = Math.ceil((total_cost + total_cost * int_rate) / months);
+
+        return "" + monthly_contribution;
+    }
+
     public boolean addExpenses(String userId, ArrayList<HashMap<String, String>> expenses) {
-        // TODO finish this method
-        // Check to see if the expenses table exists
-        //  create it if it doesn't exist
+        // For each expense in the expenses list, add that to the expenses table for the given user (by their userId)
 
-        // Then for each expense in the expenses list, add that to the expenses table for the given user (by their userId)
-        // should be inserting all of the items at once
-
-        // Pass in a null for the expenseId for it to autoincrement,
-        // as per: https://stackoverflow.com/questions/7905859/is-there-auto-increment-in-sqlite
         boolean success;
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -168,6 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String cost = expense.get("cost");
 
             ContentValues values = new ContentValues();
+            // Pass in a null (e.g. don't pass anything) for the expenseId for it to autoincrement,
             values.put(COLUMN_USER_ID, userId);
             values.put(COLUMN_EXPENSE_ITEM_TYPE, type);
             values.put(COLUMN_EXPENSE_PRICE, cost);
@@ -181,6 +246,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return true;
     }
+
 
     // TODO delete this later
     public void openDB() {

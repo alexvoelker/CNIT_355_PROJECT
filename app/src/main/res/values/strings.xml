@@ -15,7 +15,7 @@
     <string name="debtTracker">DEBT TRACKER</string>
     <string name="receiptScanner">Expense Tracker</string>
     <string name="btnAddBill">Add Bill to List</string>
-
+    <string name="placeholder">placeholder text</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_items_here_to_record_your_spending">Add items here to record your spending</string>
