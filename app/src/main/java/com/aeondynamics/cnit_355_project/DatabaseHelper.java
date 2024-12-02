@@ -14,25 +14,40 @@ import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    // Database fields
     private static final String DATABASE_NAME = "user_database";
     private static final int DATABASE_VERSION = 1;
 
+    // TABLE_USERS fields
     private static final String TABLE_USERS = "users";
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_DOB = "dob";
 
+    // TABLE_DEBT_PAYOFF fields
     private static final String TABLE_DEBT_PAYOFF = "debt_payoff";
     private static final String COLUMN_USER_ID = "user_id";
     private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_DEBT_ID = "debtId";
     private static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_ORIGINAL_COST = "monthlyPayment";
     private static final String COLUMN_INTEREST_RATE = "interestRate";
     private static final String COLUMN_LOAN_MATURITY = "loanMaturity";
-    private static final String COLUMN_EXPENSE_ITEM_TYPE = "expenseItemType";
-    private static final String COLUMN_EXPENSE_PRICE = "expensePrice";
+
+    // TABLE_EXPENSES fields (also uses COLUMN_USER_ID in table)
     private static final String TABLE_EXPENSES = "expenseTable";
     private static final String COLUMN_EXPENSE_ID = "expenseId";
+    private static final String COLUMN_EXPENSE_ITEM_TYPE = "expenseItemType";
+    private static final String COLUMN_EXPENSE_PRICE = "expensePrice";
+
+    // TABLE_BILLS fields (also uses COLUMN_USER_ID in table)
+    private static final String TABLE_BILLS = "billTable";
+    private static final String COLUMN_BILL_ID = "billId";
+    private static final String COLUMN_BILL_TITLE = "billTitle";
+    private static final String COLUMN_BILL_DESCRIPTION = "billDescription";
+    private static final String COLUMN_BILL_AMOUNT = "billAmount";
+    private static final String COLUMN_BILL_DATE = "billDate";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,7 +63,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTable);
 
         createTable = "CREATE TABLE " + TABLE_DEBT_PAYOFF + " (" +
-                COLUMN_NAME + " TEXT PRIMARY KEY, " +
+                COLUMN_DEBT_ID + " INTEGER PRIMARY KEY," +
+                COLUMN_NAME + " TEXT NOT NULL, " +
                 COLUMN_USER_ID + " TEXT NOT NULL," +
                 COLUMN_DESCRIPTION + " TEXT NOT NULL," +
                 COLUMN_ORIGINAL_COST + " TEXT NOT NULL," +
@@ -62,6 +78,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_EXPENSE_ITEM_TYPE + " TEXT NOT NULL," +
                 COLUMN_EXPENSE_PRICE + " TEXT NOT NULL)";
         db.execSQL(createTable);
+
+        createTable = "CREATE TABLE " + TABLE_BILLS + " (" +
+                COLUMN_BILL_ID + " INTEGER PRIMARY KEY," +
+                COLUMN_USER_ID + " TEXT NOT NULL," +
+                COLUMN_BILL_TITLE + " TEXT NOT NULL," +
+                COLUMN_BILL_DESCRIPTION + " TEXT NOT NULL," +
+                COLUMN_BILL_AMOUNT + " TEXT NOT NULL," +
+                COLUMN_BILL_DATE + " TEXT NOT NULL)";
+        db.execSQL(createTable);
     }
 
     @Override
@@ -69,6 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DEBT_PAYOFF);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXPENSES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BILLS);
         onCreate(db);
     }
 
@@ -136,10 +162,70 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return validUserExists; // Return true if username/password is valid
     }
 
-    public boolean addDebtItem(String user_id, String name, String description, double monthlyPayment, double interestRate, int loanMaturity) {
+    public boolean addBillItem(String user_id, String billTitle, String billDescription,
+                               String billAmount, String billDate) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        // Pass in a null (e.g. don't pass anything) for the billId for it to autoincrement
+        values.put(COLUMN_USER_ID, user_id);
+        values.put(COLUMN_BILL_TITLE, billTitle);
+        values.put(COLUMN_BILL_DESCRIPTION, billDescription);
+        values.put(COLUMN_BILL_AMOUNT, billAmount);
+        values.put(COLUMN_BILL_DATE, billDate);
+        long result = db.insert(TABLE_BILLS, null, values);
+
+        db.close();
+
+        return result != -1;
+    }
+
+    /**
+     * Fetch the bills associated with a given user account
+     *
+     * @param userId the account to fetch bills on
+     * @return A List of Bill objects for each bill being tracked for this user.
+     * Returns null if no bills are being tracked (no results in database)
+     */
+    @SuppressLint("Range")
+    public List<Bill> getUserBills(String userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List<Bill> billList = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_BILLS +
+                " WHERE " + COLUMN_USER_ID + " = ?", new String[]{userId});
+
+        // Add each debt the person has to the debtList
+        boolean moved = cursor.moveToFirst();
+        if (!moved) {
+            return null;
+        }
+
+        while (moved) {
+            try {
+                String billTitle = cursor.getString(cursor.getColumnIndex(COLUMN_BILL_TITLE));
+                String billDescription = cursor.getString(cursor.getColumnIndex(COLUMN_BILL_DESCRIPTION));
+                String billAmount = cursor.getString(cursor.getColumnIndex(COLUMN_BILL_AMOUNT));
+                String billDate = cursor.getString(cursor.getColumnIndex(COLUMN_BILL_DATE));
+                billList.add(new Bill(billTitle, billDescription, billAmount, billDate));
+            } catch (NumberFormatException ex) {
+                // Catch exceptions for when the data in the database if malformed
+            }
+
+            moved = cursor.moveToNext();
+        }
+
+        db.close();
+        return billList;
+    }
+
+    public boolean addDebtItem(String user_id, String name, String description,
+                               double monthlyPayment, double interestRate, int loanMaturity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        // Pass in a null (e.g. don't pass anything) for the debtId for it to autoincrement
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_USER_ID, user_id);
         values.put(COLUMN_DESCRIPTION, description);
@@ -209,7 +295,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return the monthly contribution dollar value
      * @throws NumberFormatException
      */
-    private String getMonthlyContribution(String originalCost, String interestRate, String numberOfMonths) throws NumberFormatException {
+    private String getMonthlyContribution(String originalCost, String interestRate,
+                                          String numberOfMonths) throws NumberFormatException {
         // TODO make sure this math is right
 
         double total_cost = Double.parseDouble(originalCost);

@@ -41,12 +41,6 @@ public class BillsCalendarFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-//          TODO: Fix later
-//           mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-
     }
 
     private void addBillToMap(Bill bill) {
@@ -70,6 +64,9 @@ public class BillsCalendarFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.rv_bills_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // TODO add bill items to database by calling DatabaseHelper.addBillItem()
+        // TODO fetch bill items from database by calling DatabaseHelper.getUserBills()
 
         adapter = new BillAdapter(displayedBills);
         recyclerView.setAdapter(adapter);
