@@ -16,16 +16,16 @@ import androidx.core.view.WindowInsetsCompat;
 import java.io.Serializable;
 
 public class SignUpActivity extends AppCompatActivity {
-    String accountCreationFailureMessage;
+    private String accountCreationFailureMessage;
 
-    EditText username;
-    EditText password;
-    EditText passwordDoubleCheck;
+    private EditText username;
+    private EditText password;
+    private EditText passwordDoubleCheck;
 
     // dob: user's data of birth
-    EditText dob;
+    private EditText dob;
 
-    DatabaseHelper dbHelper;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

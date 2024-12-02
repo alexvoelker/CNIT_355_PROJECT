@@ -36,8 +36,8 @@ public class ReceiptScannerFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    EditText expenseTrackerInputField;
-    Button buttonAdd;
+    private EditText expenseTrackerInputField;
+    private Button buttonAdd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

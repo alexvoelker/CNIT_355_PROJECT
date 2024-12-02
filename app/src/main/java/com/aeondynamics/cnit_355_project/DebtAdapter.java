@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.InnerDebtHolder> {
-    Context context;
-    List<Debt> list;
+    private Context context;
+    private List<Debt> list;
 
     public DebtAdapter(Context context, List<Debt> list) {
         this.context = context;

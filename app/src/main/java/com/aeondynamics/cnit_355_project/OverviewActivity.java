@@ -22,24 +22,24 @@ import java.util.Arrays;
 public class OverviewActivity extends AppCompatActivity {
 
     // Fragment '0'
-    OverviewFragment overviewFragment;
+    private OverviewFragment overviewFragment;
 
     // Fragment '1'
-    BillsCalendarFragment billsCalendarFragment;
+    private BillsCalendarFragment billsCalendarFragment;
 
     // Fragment '2'
-    DebtTrackerFragment debtTrackerFragment;
+    private DebtTrackerFragment debtTrackerFragment;
 
     // Fragment '3'
-    ReceiptScannerFragment receiptScannerFragment;
+    private ReceiptScannerFragment receiptScannerFragment;
 
-    Button overviewNavButton;
-    Button billCalendarNavButton;
-    Button debtTrackerNavButton;
-    Button receiptScannerNavButton;
+    private Button overviewNavButton;
+    private Button billCalendarNavButton;
+    private Button debtTrackerNavButton;
+    private Button receiptScannerNavButton;
 
     // The userId to identify a user's data in a database query
-    String userId;
+    private String userId;
 
     public static DatabaseHelper dbHelper;
 

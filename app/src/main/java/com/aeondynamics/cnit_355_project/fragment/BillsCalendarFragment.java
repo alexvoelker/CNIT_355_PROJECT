@@ -1,10 +1,12 @@
 package com.aeondynamics.cnit_355_project.fragment;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,33 +25,15 @@ import java.util.List;
 import java.util.Map;
 
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BillsCalendarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class BillsCalendarFragment extends Fragment {
     // TODO: Fix to match our code
-    private static String ARG_PARAM2 = "param2";
 
-
+    private String userId;
 
     public BillsCalendarFragment() {
         // Required empty public constructor
     }
 
-
-    public static BillsCalendarFragment newInstance(String param1, String param2) {
-        BillsCalendarFragment fragment = new BillsCalendarFragment();
-        Bundle args = new Bundle();
-
-        //TODO: Will need to fix this later
-        args.putString(ARG_PARAM2, param1);
-
-        fragment.setArguments(args);
-        return fragment;
-    }
     Map<String, List<Bill>> billsMap = new HashMap<>();
     List<Bill> displayedBills = new ArrayList<>();
     BillAdapter adapter;
@@ -64,6 +48,7 @@ public class BillsCalendarFragment extends Fragment {
 
 
     }
+
     private void addBillToMap(Bill bill) {
         String date = bill.getDueDate(); // This should be the date the user entered
         if (!billsMap.containsKey(date)) {
@@ -73,10 +58,15 @@ public class BillsCalendarFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bills_calendar, container, false);
+
+        try {
+            userId = getArguments().getString("userId");
+        } catch (NullPointerException ex) {
+            Log.e("DATABASE", "Fragment NewDebtPayoffFragment passed null userId");
+        }
 
         RecyclerView recyclerView = view.findViewById(R.id.rv_bills_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -149,6 +139,7 @@ public class BillsCalendarFragment extends Fragment {
 
         builder.create().show();
     }
+
     private String getSelectedDate(CalendarView calendarView) {
         long dateMillis = calendarView.getDate();
         Calendar calendar = Calendar.getInstance();

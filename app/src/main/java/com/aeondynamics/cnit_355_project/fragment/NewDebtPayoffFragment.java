@@ -27,13 +27,13 @@ public class NewDebtPayoffFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    EditText billName;
-    EditText description;
-    EditText monthlyPayment;
-    EditText interest;
-    EditText loanMaturity;
-    Button debtButton;
-    String userId;
+    private EditText billName;
+    private EditText description;
+    private EditText monthlyPayment;
+    private EditText interest;
+    private EditText loanMaturity;
+    private Button debtButton;
+    private String userId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -15,8 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
-    EditText username;
-    EditText password;
+    private EditText username;
+    private EditText password;
 
 
     @Override
