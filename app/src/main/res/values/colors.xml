@@ -3,4 +3,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="calendar_header">#c4c2c2</color>
+
+    <color name="colorPrimary">#024265</color>
+    <color name="colorPrimaryDark">#024265</color>
+    <color name="colorAccent">#05af9b</color>
+
+    <color name="color_one">#fb7268</color>
+    <color name="color_white">#ededf2</color>
+    <color name="color_two">#E3E0E0</color>
+
+    <color name="debt">#29B6F6</color>
+    <color name="bills">#FFA726</color>
+    <color name="expenses">#66BB6A</color>
 </resources>
