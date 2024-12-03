@@ -50,14 +50,61 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
-            android:elevation="10dp">
+            android:elevation="10dp"
+            app:cardCornerRadius="10dp">
 
-            <TextView
-                android:id="@+id/textView3"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="TextView" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textviewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:text="Monthly Expenditures"
+                    android:textAlignment="center"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                    <TextView
+                        android:id="@+id/textViewBills"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bills"
+                        android:textSize="20sp" />
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <TextView
+                        android:id="@+id/textViewDebts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Debts"
+                        android:textSize="20sp" />
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="183dp">
+
+                    <TextView
+                        android:id="@+id/textViewExpenses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Expenses"
+                        android:textSize="20sp" />
+                </ScrollView>
+
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
