@@ -13,7 +13,9 @@ Centsible is an easy to use android app that allows the user to track their spen
 * Must use up-to-date android studio SDK 34 and Ladybug 
 * Windows 10
 * Libararies used links:
+  
       https://www.geeksforgeeks.org/how-to-add-a-pie-chart-into-an-android-application/ -pie chart
+  
       https://github.com/kizitonwose/Calendar -bills calendar
 
 ### Installing
