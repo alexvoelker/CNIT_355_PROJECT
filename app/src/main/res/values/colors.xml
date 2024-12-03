@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="calendar_header">#c4c2c2</color>
 
     <color name="colorPrimary">#024265</color>
     <color name="colorPrimaryDark">#024265</color>
