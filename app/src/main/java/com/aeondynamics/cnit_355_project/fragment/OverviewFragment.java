@@ -9,11 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aeondynamics.cnit_355_project.OverviewActivity;
 import com.aeondynamics.cnit_355_project.R;
+
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class OverviewFragment extends Fragment {
 
     private String userId;
+
+    private PieChart pieChart;
 
     public OverviewFragment() {
         // Required empty public constructor
@@ -36,7 +46,15 @@ public class OverviewFragment extends Fragment {
             Log.e("DATABASE", "Fragment NewDebtPayoffFragment passed null userId");
         }
 
+        List<HashMap<String, String>> debts = new ArrayList<>();
+        List<HashMap<String, String>> bills = new ArrayList<>();
+        List<HashMap<String, String>> expenses = new ArrayList<>();
 
+        debts = OverviewActivity.dbHelper.getOverviewDataDebts(userId);
+        bills = OverviewActivity.dbHelper.getOverviewDataBills(userId);
+        expenses = OverviewActivity.dbHelper.getOverviewDataExpenses(userId);
+
+        PieModel pieModel = new PieModel();
 
         return rootView;
     }

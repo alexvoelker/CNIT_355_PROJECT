@@ -289,6 +289,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Calculate the contribution amount per month to pay off the
      * debt by the specified time and with the given interest rate
+     *
      * @param originalCost
      * @param interestRate
      * @param numberOfMonths
@@ -334,6 +335,137 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    @SuppressLint("Range")
+    public List<HashMap<String, String>> getOverviewDataExpenses(String userId) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        List<HashMap<String, String>> expenseList = new ArrayList<>();
+//
+//        Cursor cursor = db.rawQuery("SELECT " + COLUMN_EXPENSE_ITEM_TYPE + ", " +
+//                COLUMN_EXPENSE_PRICE + " FROM " + TABLE_EXPENSES +
+//                " WHERE " + COLUMN_USER_ID + " = ?", new String[]{userId});
+//
+//        // Add each debt the person has to the debtList
+//        boolean moved = cursor.moveToFirst();
+//        if (!moved) {
+//            return null;
+//        }
+//
+//        while (moved) {
+//            try {
+//                String debtName = cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_ITEM_TYPE));
+//                String debtDescription = cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_PRICE));
+//
+//                String originalCost = cursor.getString(cursor.getColumnIndex(COLUMN_ORIGINAL_COST));
+//                String interestRate = cursor.getString(cursor.getColumnIndex(COLUMN_INTEREST_RATE));
+//                String numberOfMonths = cursor.getString(cursor.getColumnIndex(COLUMN_LOAN_MATURITY));
+//
+//                String monthlyContribution = getMonthlyContribution(originalCost,
+//                        interestRate, numberOfMonths);
+//
+//
+//                debtList.add(new Debt(debtName, debtDescription, monthlyContribution, numberOfMonths));
+//            } catch (NumberFormatException ex) {
+//                // Catch exceptions for when the data in the database if malformed
+//            }
+//
+//            moved = cursor.moveToNext();
+//        }
+//
+//        db.close();
+//        return debtList;
+
+
+        return null;
+    }
+
+    @SuppressLint("Range")
+    public List<HashMap<String, String>> getOverviewDataDebts(String userId) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        List<HashMap<String, String>> expenseList = new ArrayList<>();
+//
+//        Cursor cursor = db.rawQuery("SELECT " + COLUMN_EXPENSE_ITEM_TYPE + ", " +
+//                COLUMN_EXPENSE_PRICE + " FROM " + TABLE_EXPENSES +
+//                " WHERE " + COLUMN_USER_ID + " = ?", new String[]{userId});
+//
+//        // Add each debt the person has to the debtList
+//        boolean moved = cursor.moveToFirst();
+//        if (!moved) {
+//            return null;
+//        }
+//
+//        while (moved) {
+//            try {
+//                String debtName = cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_ITEM_TYPE));
+//                String debtDescription = cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_PRICE));
+//
+//                String originalCost = cursor.getString(cursor.getColumnIndex(COLUMN_ORIGINAL_COST));
+//                String interestRate = cursor.getString(cursor.getColumnIndex(COLUMN_INTEREST_RATE));
+//                String numberOfMonths = cursor.getString(cursor.getColumnIndex(COLUMN_LOAN_MATURITY));
+//
+//                String monthlyContribution = getMonthlyContribution(originalCost,
+//                        interestRate, numberOfMonths);
+//
+//
+//                debtList.add(new Debt(debtName, debtDescription, monthlyContribution, numberOfMonths));
+//            } catch (NumberFormatException ex) {
+//                // Catch exceptions for when the data in the database if malformed
+//            }
+//
+//            moved = cursor.moveToNext();
+//        }
+//
+//        db.close();
+//        return debtList;
+
+
+        return null;
+    }
+
+    @SuppressLint("Range")
+    public List<HashMap<String, String>> getOverviewDataBills(String userId) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        List<HashMap<String, String>> expenseList = new ArrayList<>();
+//
+//        Cursor cursor = db.rawQuery("SELECT " + COLUMN_EXPENSE_ITEM_TYPE + ", " +
+//                COLUMN_EXPENSE_PRICE + " FROM " + TABLE_EXPENSES +
+//                " WHERE " + COLUMN_USER_ID + " = ?", new String[]{userId});
+//
+//        // Add each debt the person has to the debtList
+//        boolean moved = cursor.moveToFirst();
+//        if (!moved) {
+//            return null;
+//        }
+//
+//        while (moved) {
+//            try {
+//                String debtName = cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_ITEM_TYPE));
+//                String debtDescription = cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_PRICE));
+//
+//                String originalCost = cursor.getString(cursor.getColumnIndex(COLUMN_ORIGINAL_COST));
+//                String interestRate = cursor.getString(cursor.getColumnIndex(COLUMN_INTEREST_RATE));
+//                String numberOfMonths = cursor.getString(cursor.getColumnIndex(COLUMN_LOAN_MATURITY));
+//
+//                String monthlyContribution = getMonthlyContribution(originalCost,
+//                        interestRate, numberOfMonths);
+//
+//
+//                debtList.add(new Debt(debtName, debtDescription, monthlyContribution, numberOfMonths));
+//            } catch (NumberFormatException ex) {
+//                // Catch exceptions for when the data in the database if malformed
+//            }
+//
+//            moved = cursor.moveToNext();
+//        }
+//
+//        db.close();
+//        return debtList;
+
+
+        return null;
+    }
 
     // TODO delete this later
     public void openDB() {
