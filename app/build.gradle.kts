@@ -31,8 +31,9 @@ android {
     }
 }
 
-
 dependencies {
+    // https://github.com/Applandeo/Material-Calendar-View?tab=readme-ov-file
+    implementation("com.applandeo:material-calendar-view:1.9.2")
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -42,9 +43,17 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    // Third party Calendar Library
+    // External Calendar repo
+    // https://github.com/kizitonwose/Calendar
+    // The view calendar library for Android
+//    implementation("com.kizitonwose.calendar:view:<latest-version>")
+    // The compose calendar library for Android
+//    implementation("com.kizitonwose.calendar:compose:<latest-version>")
+
+
+// Third party Calendar Library
     // https://github.com/roomorama/Caldroid
-    implementation(libs.caldroid)
+//    implementation(libs.caldroid)
     // Third Party Graph Library
 //    implementation(libs.mpandroidchart)
 }
