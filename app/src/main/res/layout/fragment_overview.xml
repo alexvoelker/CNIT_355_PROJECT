@@ -51,6 +51,17 @@
                 android:padding="6dp" />
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardviewinfo"
+            android:layout_width="match_parent"
+            android:layout_height="459dp"
+            android:layout_below="@+id/cardViewGraph"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="10dp"></androidx.cardview.widget.CardView>
     </LinearLayout>
 
 
