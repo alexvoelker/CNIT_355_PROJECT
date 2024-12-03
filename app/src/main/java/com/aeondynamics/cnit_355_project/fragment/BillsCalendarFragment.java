@@ -1,6 +1,5 @@
 package com.aeondynamics.cnit_355_project.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,8 +29,6 @@ import java.util.Map;
 
 
 public class BillsCalendarFragment extends Fragment {
-    // TODO: Fix to match our code
-
     private String userId;
 
     public BillsCalendarFragment() {

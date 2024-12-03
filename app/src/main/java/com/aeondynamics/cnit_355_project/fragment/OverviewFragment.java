@@ -36,7 +36,6 @@ public class OverviewFragment extends Fragment {
             Log.e("DATABASE", "Fragment NewDebtPayoffFragment passed null userId");
         }
 
-        // TODO fill out the overview fragment
 
 
         return rootView;
