@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import java.util.Locale;
 
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.BillViewHolder> {
 
@@ -26,8 +27,23 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.BillViewHolder
         Bill bill = billList.get(position);
         holder.title.setText(bill.getTitle());
         holder.description.setText(bill.getDescription());
-        holder.amount.setText(bill.getAmount());
-        holder.date.setText(bill.getDueDate());
+        holder.amount.setText(
+                String.format(Locale.US, "$%.2f", Double.parseDouble(bill.getAmount())));
+        holder.date.setText(
+                String.format(Locale.US, "Due on the %s", formatDateEnd(bill.getDueDate())));
+    }
+
+    private String formatDateEnd(String inputValue) {
+        if (inputValue.endsWith("1"))
+            inputValue = inputValue + "st";
+        else if (inputValue.endsWith("2"))
+            inputValue = inputValue + "nd";
+        else if (inputValue.endsWith("3"))
+            inputValue = inputValue + "rd";
+        else
+            inputValue = inputValue + "th";
+
+        return inputValue;
     }
 
     @Override

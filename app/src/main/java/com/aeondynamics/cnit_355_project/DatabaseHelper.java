@@ -303,7 +303,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         double int_rate = Double.parseDouble(interestRate);
         int months = Integer.parseInt(numberOfMonths);
 
-        double monthly_contribution = Math.ceil((total_cost + total_cost * int_rate) / months);
+        double monthly_contribution = Math.ceil((total_cost + total_cost * (int_rate / 100)) / months);
 
         return "" + monthly_contribution;
     }

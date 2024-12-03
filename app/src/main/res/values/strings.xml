@@ -22,4 +22,5 @@
     <string name="add_items_to_budget">Add Items to Budget</string>
     <string name="record_your_expenses">Record Your Expenses</string>
     <string name="expense_tracker">Expense Tracker</string>
+    <string name="bill_calendar_subtitle">Organize your Reoccurring Expenses</string>
 </resources>

@@ -33,7 +33,7 @@
         android:id="@+id/et_bill_date"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:hint="Bill Due Date"
-        android:inputType="text"
-        android:padding="8dp"/>
+        android:hint="Bill Due Date (Day of Month)"
+        android:inputType="number"
+        android:padding="8dp" />
 </LinearLayout>

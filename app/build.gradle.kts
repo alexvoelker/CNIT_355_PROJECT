@@ -42,6 +42,9 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    // Third party Calendar Library
+    // https://github.com/roomorama/Caldroid
+    implementation(libs.caldroid)
     // Third Party Graph Library
 //    implementation(libs.mpandroidchart)
 }
