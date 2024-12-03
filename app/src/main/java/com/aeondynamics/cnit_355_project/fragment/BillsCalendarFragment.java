@@ -1,5 +1,6 @@
 package com.aeondynamics.cnit_355_project.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,15 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aeondynamics.cnit_355_project.Bill;
 import com.aeondynamics.cnit_355_project.BillAdapter;
-import com.aeondynamics.cnit_355_project.DatabaseHelper;
 import com.aeondynamics.cnit_355_project.OverviewActivity;
 import com.aeondynamics.cnit_355_project.R;
+import com.applandeo.materialcalendarview.CalendarDay;
+import com.applandeo.materialcalendarview.CalendarView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -68,11 +69,19 @@ public class BillsCalendarFragment extends Fragment {
         if (billsMap == null || billsMap.isEmpty())
             return;
 
+        // Add an icon to each day in the calendar that has a bill due on it
+        List<CalendarDay> calendarDays = new ArrayList<>();
+
         for (String element : billsMap.keySet()) {
             int day = Integer.parseInt(element);
-            // update the calendarView to show this ...
-//            calendarView.;
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.DAY_OF_MONTH, day);
+            CalendarDay cd = new CalendarDay(calendar);
+            cd.setImageResource(R.drawable.ic_launcher_background);
+            calendarDays.add(cd);
         }
+
+        calendarView.setCalendarDays(calendarDays);
     }
 
     @Override
@@ -93,32 +102,37 @@ public class BillsCalendarFragment extends Fragment {
                 addBillToMap(bill);
         }
 
-
         RecyclerView recyclerView = view.findViewById(R.id.rv_bills_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
         adapter = new BillAdapter(displayedBills);
         recyclerView.setAdapter(adapter);
 
-        calendarView = view.findViewById(R.id.calendar_view);
+
+
+        // Setup Calendar
+        calendarView = view.findViewById(R.id.calendarView);
+        calendarView.setSwipeEnabled(false);
+        calendarView.setHeaderColor(R.color.calendar_header);
+        updateCalendarMarks();
+
 
         // Show all bills initially
         updateDisplayedBills(null);
 
-        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
-//            String selectedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
-            updateDisplayedBills(String.valueOf(dayOfMonth)); // Show bills for the selected date
+        calendarView.setOnCalendarDayClickListener((calendarDay) -> {
+            Calendar c = calendarDay.getCalendar();
+            String day = String.valueOf(c.get(Calendar.DAY_OF_MONTH));
+            updateDisplayedBills(day);
         });
 
         Button addBillButton = view.findViewById(R.id.btn_add_bill);
-        addBillButton.setOnClickListener(v -> {
-            String date = getSelectedDate();
-            showAddBillDialog(date);
-        });
+        addBillButton.setOnClickListener(v -> showAddBillDialog());
 
         return view;
     }
+
+    private String date = "";
 
     private void updateDisplayedBills(String date) {
         displayedBills.clear();
@@ -137,7 +151,7 @@ public class BillsCalendarFragment extends Fragment {
     }
 
 
-    private void showAddBillDialog(String date) {
+    private void showAddBillDialog() {
         // Create a dialog
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext());
         builder.setTitle("Add New Bill");
@@ -179,17 +193,4 @@ public class BillsCalendarFragment extends Fragment {
 
         builder.create().show();
     }
-
-    private String getSelectedDate() {
-        long dateMillis = calendarView.getDate();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(dateMillis);
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1; // Months are 0-indexed
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-//        return String.format("%04d-%02d-%02d", year, month, day); // Format as yyyy-MM-dd
-
-        return "" + day;
-    }
-
 }
