@@ -88,7 +88,7 @@ public class BillsCalendarFragment extends Fragment {
         try {
             userId = getArguments().getString("userId");
         } catch (NullPointerException ex) {
-            Log.e("DATABASE", "Fragment NewDebtPayoffFragment passed null userId");
+            Log.e("DATABASE", "Fragment BillCalendarFragment passed null userId");
         }
 
         // Get the bills from the database

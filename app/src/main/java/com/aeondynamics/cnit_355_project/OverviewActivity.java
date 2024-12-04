@@ -90,10 +90,11 @@ public class OverviewActivity extends AppCompatActivity {
         receiptScannerNavButton = findViewById(R.id.navReceiptScanner);
         receiptScannerNavButton.setOnClickListener(e -> changeFragment(3));
 
+        changeFragment(0);
     }
 
     // Start at 0, since the overview fragment is the default when this activity is launched
-    private int currentFragment = 0;
+    private int currentFragment = -1;
 
     private void changeFragment(int index) {
         // Exit early if the fragment to change to is the

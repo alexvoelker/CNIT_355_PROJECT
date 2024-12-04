@@ -47,7 +47,7 @@ public class ReceiptScannerFragment extends Fragment {
         try {
             userId = getArguments().getString("userId");
         } catch (NullPointerException ex) {
-            Log.e("DATABASE", "Fragment DebtTrackerFragment passed null userId");
+            Log.e("DATABASE", "Fragment ReceiptScannerFragment passed null userId");
         }
 
         expenseTrackerInputField = rootView.findViewById(R.id.expenseTrackerInputField);
