@@ -28,7 +28,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.BillViewHolder
         holder.title.setText(bill.getTitle());
         holder.description.setText(bill.getDescription());
         holder.amount.setText(
-                String.format(Locale.US, "$%.2f", Double.parseDouble(bill.getAmount())));
+                String.format(Locale.US, "$%,.2f", Double.parseDouble(bill.getAmount())));
         holder.date.setText(
                 String.format(Locale.US, "Due on the %s", formatDateEnd(bill.getDueDate())));
     }

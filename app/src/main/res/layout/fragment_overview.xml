@@ -76,7 +76,8 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="142dp">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/billsdata"
@@ -93,7 +94,8 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="142dp">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/debtsdata"
@@ -110,7 +112,8 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="142dp">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/expensesdata"

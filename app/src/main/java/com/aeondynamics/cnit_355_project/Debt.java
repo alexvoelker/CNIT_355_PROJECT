@@ -1,5 +1,7 @@
 package com.aeondynamics.cnit_355_project;
 
+import java.util.Locale;
+
 public class Debt {
     private String debt_name;
     private String debt_description;
@@ -10,8 +12,9 @@ public class Debt {
                 String debt_monthly_contribution, String debt_payoff_months) {
         this.debt_name = debt_name;
         this.debt_description = debt_description;
-        this.debt_monthly_contribution = String.format("MonthlyContribution: $%s",
-                debt_monthly_contribution);
+        this.debt_monthly_contribution = String.format(Locale.US,
+                "MonthlyContribution: $%,.2f",
+                Double.parseDouble(debt_monthly_contribution));
         this.debt_payoff_months = String.format("Payoff Time: %s Months",
                 debt_payoff_months);
     }

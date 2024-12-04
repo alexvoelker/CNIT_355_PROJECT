@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.aeondynamics.cnit_355_project.OverviewActivity;
 import com.aeondynamics.cnit_355_project.R;
@@ -86,13 +87,43 @@ public class OverviewFragment extends Fragment {
 
 
         // Fill in the list of expenses for each section: Expenses, Bills, Debts
+        TextView billTitle = rootView.findViewById(R.id.textViewBills);
+        billTitle.setText(String.format("Bills     (%s)", formatPrice(costBills)));
+        billTitle.setTextColor(Color.parseColor(BILL_SLICE_COLOR));
+        TextView billData = rootView.findViewById(R.id.billsdata);
+        billData.setText(formatDataList(bills));
 
+        TextView debtTitle = rootView.findViewById(R.id.textViewDebts);
+        debtTitle.setText(String.format("Debts     (%s)", formatPrice(costDebts)));
+        debtTitle.setTextColor(Color.parseColor(DEBT_SLICE_COLOR));
+        TextView debtData = rootView.findViewById(R.id.debtsdata);
+        debtData.setText(formatDataList(debts));
+
+
+        TextView expenseTitle = rootView.findViewById(R.id.textViewExpenses);
+        expenseTitle.setText(String.format("Expenses  (%s)", formatPrice(costExpenses)));
+        expenseTitle.setTextColor(Color.parseColor(EXPENSE_SLICE_COLOR));
+        TextView expenseData = rootView.findViewById(R.id.expensesdata);
+        expenseData.setText(formatDataList(expenses));
 
         return rootView;
     }
 
+    private String formatDataList(List<HashMap<String, String>> data) {
+        StringBuilder sb = new StringBuilder();
+
+        for (HashMap<String, String> item : data) {
+            sb.append(item.get("name"))
+                    .append("   ")
+                    .append(formatPrice(Double.parseDouble(item.get("cost"))))
+                    .append('\n');
+        }
+
+        return sb.toString();
+    }
+
     private String formatPrice(double price) {
-        return String.format(Locale.US, "$,.2f", price);
+        return String.format(Locale.US, "$%,.2f", price);
     }
 
     private float getTotalCost(List<HashMap<String, String>> list) {
