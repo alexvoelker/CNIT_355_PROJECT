@@ -67,40 +67,55 @@
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/textViewBills"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bills"
+                    android:textSize="20sp" />
+
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    android:layout_height="142dp">
 
                     <TextView
-                        android:id="@+id/textViewBills"
+                        android:id="@+id/billsdata"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Bills"
-                        android:textSize="20sp" />
+                        android:layout_height="wrap_content" />
                 </ScrollView>
 
+                <TextView
+                    android:id="@+id/textViewDebts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Debts"
+                    android:textSize="20sp" />
+
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="180dp">
+                    android:layout_height="142dp">
 
                     <TextView
-                        android:id="@+id/textViewDebts"
+                        android:id="@+id/debtsdata"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Debts"
-                        android:textSize="20sp" />
+                        android:layout_height="wrap_content" />
                 </ScrollView>
 
+                <TextView
+                    android:id="@+id/textViewExpenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Expenses"
+                    android:textSize="20sp" />
+
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="183dp">
+                    android:layout_height="142dp">
 
                     <TextView
-                        android:id="@+id/textViewExpenses"
+                        android:id="@+id/expensesdata"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Expenses"
-                        android:textSize="20sp" />
+                        android:layout_height="wrap_content" />
                 </ScrollView>
 
             </LinearLayout>
