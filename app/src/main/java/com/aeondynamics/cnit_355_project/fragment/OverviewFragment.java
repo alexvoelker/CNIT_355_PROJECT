@@ -111,6 +111,8 @@ public class OverviewFragment extends Fragment {
 
     private String formatDataList(List<HashMap<String, String>> data) {
         StringBuilder sb = new StringBuilder();
+        if (data == null)
+            return "";
 
         for (HashMap<String, String> item : data) {
             sb.append(item.get("name"))
