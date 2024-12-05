@@ -1,9 +1,7 @@
 package com.aeondynamics.cnit_355_project;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -16,8 +14,6 @@ import com.aeondynamics.cnit_355_project.fragment.BillsCalendarFragment;
 import com.aeondynamics.cnit_355_project.fragment.DebtTrackerFragment;
 import com.aeondynamics.cnit_355_project.fragment.OverviewFragment;
 import com.aeondynamics.cnit_355_project.fragment.ReceiptScannerFragment;
-
-import java.util.Arrays;
 
 public class OverviewActivity extends AppCompatActivity {
 
@@ -56,9 +52,6 @@ public class OverviewActivity extends AppCompatActivity {
 
         // Create a static DatabaseHelper object that can be used by all of the fragments
         dbHelper = new DatabaseHelper(this);
-
-        dbHelper.openDB(); // TODO remove this later so the database doesn't cause a memory leak!
-//        dbHelper.onUpgrade(dbHelper.getWritableDatabase(), 1, 1);
 
         userId = getIntent().getStringExtra("userId");
 

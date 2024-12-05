@@ -298,8 +298,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     private String getMonthlyContribution(String originalCost, String interestRate,
                                           String numberOfMonths) throws NumberFormatException {
-        // TODO make sure this math is right
-
         double total_cost = Double.parseDouble(originalCost);
         double int_rate = Double.parseDouble(interestRate);
         int months = Integer.parseInt(numberOfMonths);
@@ -436,8 +434,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return billList;
     }
 
-    // TODO delete this later
-    public void openDB() {
-        SQLiteDatabase db = this.getWritableDatabase();
-    }
 }
