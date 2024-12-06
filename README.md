@@ -14,9 +14,21 @@ Centsible is an easy to use android app that allows the user to track their spen
 * Windows 10
 * Libararies used:
 
-    [EazeGraph](https://github.com/paulroehr/EazeGraph) (Pie Chart)
-    [Nineoldandroids](https://mvnrepository.com/artifact/com.nineoldandroids/library/2.4.0) (Dependency for EaseGraph)
-    [Calendar](https://github.com/kizitonwose/Calendar) (Base Widget for Bill Calendar)
+[EazeGraph](https://github.com/paulroehr/EazeGraph) (Pie Chart)
+
+[Nineoldandroids](https://mvnrepository.com/artifact/com.nineoldandroids/library/2.4.0) (Dependency for EaseGraph)
+
+[Material Calendar View](https://github.com/Applandeo/Material-Calendar-View) (Base Widget for Bill Calendar)
+
+Thus, added the following to the [app/build.gradle] file
+```kotlin
+dependencies {
+    implementation("com.applandeo:material-calendar-view:1.9.2")
+    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("com.github.blackfizz:eazegraph:1.2.2@aar")
+    implementation ("com.nineoldandroids:library:2.4.0")
+}
+```
 
 ### Installing
 
@@ -33,8 +45,8 @@ code blocks for commands
 
 ## Authors
 
-[Alex Voelker](voelker0@purdue.edu) 
+Alex Voelker (voelker0@purdue.edu) 
 
-[Carissa Bauerband](cbauerba@purdue.edu)
+Carissa Bauerband (cbauerba@purdue.edu)
 
-[Megan Clecak](mclecak@purdue.edu)
+Megan Clecak (mclecak@purdue.edu)
