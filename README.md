@@ -10,7 +10,7 @@ Centsible is an easy to use android app that allows the user to track their spen
 
 ### Dependencies
 
-* Must use up-to-date android studio SDK 34 and Ladybug 
+* Must use up-to-date Android Studio SDK 34 and Ladybug 
 * Windows 10
 * Libararies used:
 
@@ -34,19 +34,11 @@ dependencies {
 
 * Github repository 
 * Any modifications needed to be made to files/folders
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+  
+As mentioned previously, the above libraries will need to be added to the required file. Without these added dependencies, the app will not function. 
 
 ## Authors
 
 Alex Voelker (voelker0@purdue.edu) 
-
 Carissa Bauerband (cbauerba@purdue.edu)
-
 Megan Clecak (mclecak@purdue.edu)
