@@ -4,7 +4,7 @@ This application was created for an easy, beginner-friendly college student/youn
 
 ## Description
 
-Centsible is an easy to use android app that allows the user to track their spending and budget habits. The app contains a login page where the user may log in or create a new account. Once the user is logged in, the user is able to see a budget overview, which has current spending and debt that is stored per their username. The user is able to create new debts, which updates the overview. Next, the user is able to see all bills for the month and track which date the bills are due. THe user is also able to use the Debt Payoff to track specific loans/debts and "what-if" scenario of paying off the debt by specified months. The user is also able to add in debts on the expense tracker, which allocates the expense to the specific spending category. 
+Centsible is an easy to use android app that allows the user to track their spending and budget habits. The app contains a login page where the user may log in or create a new account. Once the user is logged in, the user is able to see a budget overview, which has current spending and debt that is stored per their username. The user is able to create new debts, which updates the overview. Next, the user is able to see all bills for the month and track which date the bills are due. The user is also able to use the Debt Payoff to track specific loans/debts and "what-if" scenario of paying off the debt by specified months. The user is also able to add in debts on the expense tracker, which allocates the expense to the specific spending category. The overview of monthly expenditures updates as data is added to the various pages.
 
 ## Getting Started
 
