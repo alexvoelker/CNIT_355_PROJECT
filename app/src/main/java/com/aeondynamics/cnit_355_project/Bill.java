@@ -16,9 +16,6 @@ public class Bill {
 
     }
 
-    public Bill(String billName, String date, String billAmount) {
-    }
-
     public String getTitle() {
         return title;
     }
