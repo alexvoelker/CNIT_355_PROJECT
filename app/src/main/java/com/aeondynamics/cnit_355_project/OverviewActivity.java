@@ -86,7 +86,7 @@ public class OverviewActivity extends AppCompatActivity {
         changeFragment(0);
     }
 
-    // Start at 0, since the overview fragment is the default when this activity is launched
+    // Start at -1, since the overview fragment is the default when this activity is launched, which we manually set at the end of the onCreate method
     private int currentFragment = -1;
 
     private void changeFragment(int index) {

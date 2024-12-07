@@ -62,7 +62,6 @@ public class SignUpActivity extends AppCompatActivity {
         String passwordString = password.getText().toString();
         String passwordDoubleCheckString = passwordDoubleCheck.getText().toString();
 
-        //can change later if group decides different approach
         String hashedPassword = Security.hashPassword(passwordString);
         String hashedPasswordDoubleCheck = Security.hashPassword(passwordDoubleCheckString);
 
@@ -89,11 +88,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean checkValidAccount(String username, String password, String passwordDoubleCheck) {
-        //DONE make sure that the username hasn't been taken by another
-        //  account, and that the password meets our requirements
-        //DONE with verifying username, need to discuss pw requirements still
-        //DONE set the value of accountCreationFailureMessage corresponding to what the error is
-        //DONE
+        // Make sure that the username hasn't been taken by another account
+        // Set the value of accountCreationFailureMessage corresponding to what the error is
 
         if (username.isEmpty() || password.isEmpty() || passwordDoubleCheck.isEmpty()) {
             // Make sure a required field isn't empty so the new user won't have
@@ -109,7 +105,6 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         }
 
-        // More validation here (e.g., password strength checks)
         return true;
     }
 }

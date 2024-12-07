@@ -1,5 +1,5 @@
 package com.aeondynamics.cnit_355_project;
-//UPDATED 11/17/24
+
 import java.security.MessageDigest;
 import java.nio.charset.StandardCharsets;
 
@@ -10,10 +10,6 @@ public class Security {
      * @param password the plain text password
      * @return the hashed password
      */
-
-    //Not sure if this is how we want to do it, but figured it was an option for security
-    //Can adjust later as needed
-
     public static String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
