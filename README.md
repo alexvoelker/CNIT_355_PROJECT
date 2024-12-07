@@ -50,44 +50,44 @@ The project contains the following classes:
 - `SignUpActivity`
     - Controls the creation of new user accounts (sign-up screen)
 - `OverviewActivity`
-  - Main content of the application
-  - Consists of the navigation button manu and the fragment container
-  - Enables switching of fragments as per user interactions with the navigation menu
+    - Main content of the application
+    - Consists of the navigation button manu and the fragment container
+    - Enables switching of fragments as per user interactions with the navigation menu
 - `OverviewFragment`
-  - Fragment displayed within the `OverviewActivity`
-  - Shows an overview of the user account's finances
+    - Fragment displayed within the `OverviewActivity`
+    - Shows an overview of the user account's finances
 - `BillsCalendarFragment`
-  - Fragment displayed within the `OverviewActivity`
-  - Shows user's monthly expenses, with an indication of what is due on which day of the month
-  - Allows users to add new monthly expenses
+    - Fragment displayed within the `OverviewActivity`
+    - Shows user's monthly expenses, with an indication of what is due on which day of the month
+    - Allows users to add new monthly expenses
 - `DebtTrackerFragment`
-  - Fragment displayed within the `OverviewActivity`
-  - Displays a list of the user's debts, and how much money they need to pay each month to keep up with paying it off
-  - Allows users to add new debts to the list
+    - Fragment displayed within the `OverviewActivity`
+    - Displays a list of the user's debts, and how much money they need to pay each month to keep up with paying it off
+    - Allows users to add new debts to the list
 - `NewDebtPayoffFragment`
-  - Fragment displayed within the `OverviewActivity`
-  - Fragment used to create a new debt and add it to the user's database records
-  - Called by user interactions with the `DebtTrackerFragment`
+    - Fragment displayed within the `OverviewActivity`
+    - Fragment used to create a new debt and add it to the user's database records
+    - Called by user interactions with the `DebtTrackerFragment`
 - `ReceiptScannerFragment`
-  - Fragment displayed within the `OverviewActivity`
-  - Gathers user text input and inserts new expenses into the user's records
+    - Fragment displayed within the `OverviewActivity`
+    - Gathers user text input and inserts new expenses into the user's records
 - `Security`
-  - Hashes string passwords used in user accounts
-  - Used by the `MainActivity` and `SignUpActivity` classes
+    - Hashes string passwords used in user accounts
+    - Used by the `MainActivity` and `SignUpActivity` classes
 - `DatabaseHelper`
-  - Database interface object used throughout the application to handle all communications between the app and the app's SQLite database.
-  - Created specifically in `MainActivity`, `SignUpActivity` and `OverviewActivity`
+    - Database interface object used throughout the application to handle all communications between the app and the app's SQLite database.
+    - Created specifically in `MainActivity`, `SignUpActivity` and `OverviewActivity`
     - The instance object in `OverviewActivity` is also used by each fragment (`BillsCalendarFragment`, `DebtTrackerFragment`, `NewDebtPayoffFragment`, `OverviewFragment`, `ReceiptScannerFragment`) to interface with the database to insert/read records
 - `BillAdapter`
-  - RecyclerView adapter used in `BillsCalendarFragment`
-  - Displays a list of `Bill` objects corresponding to the user's bills (on a specified day)
+    - RecyclerView adapter used in `BillsCalendarFragment`
+    - Displays a list of `Bill` objects corresponding to the user's bills (on a specified day)
 - `Bill`
-  - Container object used to organize data on a bill in `BillAdapter`, `DatabaseHelper`, and `BillsCalendarFragment` 
+    - Container object used to organize data on a bill in `BillAdapter`, `DatabaseHelper`, and `BillsCalendarFragment` 
 - `DebtAdapter`
-  - RecyclerView adapter used in `DebtTrackerFragment`
-  - Displays a list of `Debt` objects corresponding to the user's debts
+    - RecyclerView adapter used in `DebtTrackerFragment`
+    - Displays a list of `Debt` objects corresponding to the user's debts
 - `Debt`
-  - Container object used to organize data on a debt in `DebtAdapter`, `DatabaseHelper`, and `DebtTrackerFragment`
+    - Container object used to organize data on a debt in `DebtAdapter`, `DatabaseHelper`, and `DebtTrackerFragment`
 
 ## Authors
 
