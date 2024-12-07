@@ -40,5 +40,7 @@ As mentioned previously, the above libraries will need to be added to the requir
 ## Authors
 
 Alex Voelker (voelker0@purdue.edu) 
+
 Carissa Bauerband (cbauerba@purdue.edu)
+
 Megan Clecak (mclecak@purdue.edu)
